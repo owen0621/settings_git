@@ -2,9 +2,6 @@
 path=('/opt/homebrew/bin' $path)
 export PATH
 
-#ctags
-#alias ctags='/opt/homebrew/bin/ctags'
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -108,9 +105,17 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+#ctags
+#alias ctags='/opt/homebrew/bin/ctags'
+#
+#X86 Homebrew
+alias ibrew='arch -x86_64 /usr/local/bin/brew'
+
 #tmux auto start
 if [ -z "$TMUX" ]; then
     tmux attach -t TMUX || tmux new -s TMUX
 fi
+
 export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
 export PATH="/opt/homebrew/opt/python@3.9/bin:$PATH"

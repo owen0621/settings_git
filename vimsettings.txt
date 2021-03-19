@@ -65,9 +65,9 @@ call vundle#begin()
         "let g:ycm_key_list_select_completion=['<c-n>']
         "let g:ycm_key_list_previous_completion=['<c-p>']
         set completeopt=menu  "關閉preview window
-        let g:ycm_python_binary_path = '/Users/wang/miniforge3/bin/python3.9'
-        let g:ycm_python_binary_path = '/Users/wang/miniforge3/envs/tensorflow/bin/python3.8'
-        let g:ycm_python_binary_path = '/Users/wang/miniforge3/envs/pytorch/bin/python3.9'
+        "let g:ycm_python_binary_path = '/Users/wang/miniforge3/bin/python3.9'
+        "let g:ycm_python_binary_path = '/Users/wang/miniforge3/envs/tensorflow/bin/python3.8'
+        "let g:ycm_python_binary_path = '/Users/wang/miniforge3/envs/pytorch/bin/python3.9'
         let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
         let g:ycm_confirm_extra_conf=0 "關閉載入.ycm_extra_conf.py提示
         let g:ycm_collect_identifiers_from_tags_files=1 " 開啟 YCM 基於標籤引擎
@@ -101,26 +101,43 @@ call vundle#begin()
     "NERDTree    
     Plugin 'scrooloose/nerdtree'
         nmap <F1> :NERDTreeToggle<CR>
+        "set window size
         let g:NERDTreeWinSize = 25
+        "set mouse
+        "let g:NERDTreeMouseMode=2
+        
         autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
         " Exit Vim if NERDTree is the only window left.
         autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |     
         \ quit | endif
+
         " Start NERDTree. If a file is specified, move the cursor to its window.
         "autocmd StdinReadPre * let s:std_in=1
         "autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
         " 显示行号
         let NERDTreeShowLineNumbers=1
         let NERDTreeAutoCenter=1
+
+        "Making it prettier
+        let NERDTreeMinimalUI = 1
+        let NERDTreeDirArrows = 1
+
+        let g:NERDTreeHidden=0     "不显示隐藏文件
+
         " 在终端启动vim时，共享NERDTree
         let g:nerdtree_tabs_open_on_console_startup=1
+
         " 显示书签列表
         "let NERDTreeShowBookmarks=1
+
         " Open the existing NERDTree on each new tab.
         autocmd BufWinEnter * silent NERDTreeMirror
+
         "设置树的显示图标
         let g:NERDTreeDirArrowExpandable = '-'
         let g:NERDTreeDirArrowCollapsible = '+'
+
         Plugin 'Xuyuanp/nerdtree-git-plugin'
         let g:NERDTreeGitStatusUseNerdFonts = 1
         let g:NERDTreeGitStatusIndicatorMapCustom = {
@@ -135,6 +152,8 @@ call vundle#begin()
                         \ 'Clean'     :'✔︎',
                         \ 'Unknown'   :'?',
                         \ }
+
+        "Plugin 'ryanoasis/vim-devicons'
 
     "括弧補全
     Plugin 'Raimondi/delimitMate'
@@ -164,8 +183,8 @@ call vundle#begin()
     "Plugin 'vim-scripts/indentpython.vim'
    
     "語法檢查/高亮
-    Plugin 'scrooloose/syntastic'
-        set statusline+=%#warningmsg#
+    "Plugin 'scrooloose/syntastic'
+    set statusline+=%#warningmsg#
         set statusline+=%{SyntasticStatuslineFlag()}
         set statusline+=%*
         let g:syntastic_always_populate_loc_list = 1
@@ -173,14 +192,19 @@ call vundle#begin()
         let g:syntastic_check_on_open = 1
         let g:syntastic_check_on_wq = 0
         "let g:syntastic_python_checkers=['pylint']
-        "let g:syntastic_python_checkers=['flake8',"pylint"]
+        let g:syntastic_python_checkers=['flake8',"pylint"]
         "let g:syntastic_python_pylint_post_args =
                 "\ '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
-    Plugin 'nvie/vim-flake8'
+    "Plugin 'nvie/vim-flake8'
         let python_highlight_all=1
     
     "airline
     Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+        let g:airline_theme="base16_eighties"
+        "let g:airline_theme="lucius"
+        "let g:airline_theme="dark"
+        let g:airline_solarized_bg='dark'
         set laststatus=2
         " 使用powerline打過補丁的字型
         let g:airline_powerline_fonts = 1
@@ -241,11 +265,29 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
     
 set t_Co=256
+
+"Theme
 "colorscheme torte
-"set paste
-highlight Normal ctermbg=235
+colorscheme Tomorrow-Night-Eighties 
+"colorscheme Tomorrow-Night 
+"colorscheme Tomorrow 
+"colorscheme flattened_dark
+"colorscheme gruvbox
+"colorscheme seoul256
+"let g:seoul256_background = 234
+"set background=dark
+"colorscheme solarized
+"colorscheme monokai
+
+"Set font
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h20
+
+"Bg color
+"highlight Normal ctermbg=235
+
 filetype on 
 syntax on
+"set mouse=a
 set scrolloff=3
 set nocompatible
 set number
@@ -255,6 +297,8 @@ set smartcase
 set hlsearch
 set incsearch
 set cindent
+set autoindent
+set smartindent
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -268,6 +312,9 @@ set showcmd
 set showmode
 set wrap
 set encoding=utf-8
+filetype indent on
+"set paste
+
 "折疊
 set foldmethod=indent
 "nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
