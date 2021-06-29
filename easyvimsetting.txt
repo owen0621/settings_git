@@ -1,0 +1,226 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+    " alternatively, pass a path where Vundle should install plugins
+    "call vundle#begin('~/some/path/here')
+
+    " let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'
+
+    "Plugin 'Valloric/YouCompleteMe'
+
+    "快速註解
+    Plugin 'preservim/nerdcommenter'
+
+    "tab智慧補全
+    Plugin 'ervandew/supertab'
+
+    "彩虹括號
+    Plugin 'luochen1990/rainbow'
+        let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+        let g:rainbow_conf = {
+        \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+        \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+        \   'operators': '_,_',
+        \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+        \   'separately': {
+        \   '*': {},
+        \   'tex': {
+        \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+        \   },
+        \   'lisp': {
+        \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+        \   },
+        \   'vim': {
+        \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+        \   },
+        \   'html': {
+        \   'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+        \   },
+        \   'css': 0,
+        \   }
+        \}
+
+    "NERDTree    
+    "Plugin 'scrooloose/nerdtree'
+        nmap <F1> :NERDTreeToggle<CR>
+        "set window size
+        let g:NERDTreeWinSize = 25
+
+        " 显示行号
+        let NERDTreeShowLineNumbers=1
+        let NERDTreeAutoCenter=1
+
+        let g:NERDTreeHidden=0     "不显示隐藏文件
+
+        " 在终端启动vim时，共享NERDTree
+        let g:nerdtree_tabs_open_on_console_startup=1
+
+        " 显示书签列表
+        "let NERDTreeShowBookmarks=1
+
+
+        "设置树的显示图标
+        let g:NERDTreeDirArrowExpandable = '-'
+        let g:NERDTreeDirArrowCollapsible = '+'
+
+    "括弧補全
+    Plugin 'Raimondi/delimitMate'
+        au FileType python let b:delimitMate_nesting_quotes = ['"']
+    
+    "折疊    
+    Plugin 'tmhedberg/SimpylFold'
+        let g:SimpylFold_docstring_preview=1
+    
+    "airline
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+        "let g:airline_theme="base16_eighties"
+        "let g:airline_theme="lucius"
+        "let g:airline_theme="dark"
+        let g:airline_solarized_bg='dark'
+        set laststatus=2
+        " 使用powerline打過補丁的字型
+        let g:airline_powerline_fonts = 0
+        " 開啟tabline
+        let g:airline#extensions#tabline#enabled = 1
+        " tabline中當前buffer兩端的分隔字元
+        let g:airline#extensions#tabline#left_sep = ' '
+        " tabline中未啟用buffer兩端的分隔字元
+        let g:airline#extensions#tabline#left_alt_sep = ' '
+        " tabline中buffer顯示編號
+        let g:airline#extensions#tabline#buffer_nr_show = 1
+        " 對映切換buffer的鍵位
+        nnoremap [b :bp<CR>
+        nnoremap ]b :bn<CR>
+        " 對映<leader>num到num buffer
+        map <leader>1 :b 1<CR>
+        map <leader>2 :b 2<CR>
+        map <leader>3 :b 3<CR>
+        map <leader>4 :b 4<CR>
+        map <leader>5 :b 5<CR>
+        map <leader>6 :b 6<CR>
+        map <leader>7 :b 7<CR>
+        map <leader>8 :b 8<CR>
+        map <leader>9 :b 9<CR>
+
+    "indentline
+    Plugin 'Yggdroot/indentLine'
+        let g:indentLine_concealcursor = 'inc'
+        let g:indentLine_conceallevel = 2
+        
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+set t_Co=256
+
+""Theme
+"colorscheme torte
+colorscheme Tomorrow-Night-Eighties 
+"colorscheme Tomorrow-Night 
+"colorscheme Tomorrow 
+"colorscheme flattened_dark
+"colorscheme gruvbox
+"colorscheme seoul256
+"let g:seoul256_background = 234
+"set background=dark
+"colorscheme solarized
+"colorscheme monokai
+
+"Set font
+"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h20
+
+"Bg color
+"highlight Normal ctermbg=235
+
+syntax on
+"set mouse=a
+set scrolloff=3
+set nocompatible
+set number
+set ruler
+set noignorecase
+set smartcase
+set hlsearch
+set incsearch
+set cindent
+set autoindent
+set smartindent
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set confirm
+set backspace=2
+set history=500
+set showcmd
+set showmode
+set wrap
+set encoding=utf-8
+filetype indent on
+"set paste
+
+"折疊
+set foldmethod=indent
+"nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+"set foldcolumn=4
+"set foldcolumn&
+
+"新建.c,.h,.sh,.java檔案，自動插入檔案頭 
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()" 
+"定義函式SetTitle，自動插入檔案頭 
+func SetTitle() 
+    "如果檔案型別為.sh檔案 
+    if &filetype == 'sh' 
+            call setline(1, "##########################################################################") 
+            call append(line("."), "# File Name: ".expand("%")) 
+            call append(line(".")+1, "# Author: Wang") 
+            call append(line(".")+2, "# mail: owen10270936@gmail.com") 
+            call append(line(".")+3, "# Created Time: ".strftime("%c")) 
+            call append(line(".")+4, "#########################################################################") 
+    else 
+            call setline(1, "/*************************************************************************") 
+            call append(line("."),   "  > File Name: ".expand("%"))
+            call append(line(".")+1, "  > Author: Wang")
+            call append(line(".")+2, "  > Mail: owen10270936@gmail.com ") 
+            call append(line(".")+3, "  > Created Time: ".strftime("%c"))                                
+            call append(line(".")+4, " ************************************************************************/") 
+            call append(line(".")+5, "")            
+    endif
+    
+    if &filetype == 'cpp'        
+        call append(line(".")+6, "//#include <bits/stdc++.h>")
+        call append(line(".")+7, "//using namespace std;")        
+        call append(line(".")+8, "")                                                    
+    endif                                
+    if &filetype == 'c'        
+        call append(line(".")+6, "//#include <stdio.h>")                       
+        call append(line(".")+7, "//#include <stdlib.h>")                       
+        call append(line(".")+8, "//#include <string.h>")                       
+        call append(line(".")+9, "")    
+    endif                                
+    if &filetype == 'java'
+        call append(line(".")+6,"public class ".expand("%"))
+        call append(line(".")+7,"")
+    endif
+    "新建檔案後，自動定位到檔案末尾    
+    autocmd BufNewFile * normal G
+endfunc 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""))
