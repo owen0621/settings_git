@@ -107,10 +107,17 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 #ctags
-#alias ctags='/opt/homebrew/bin/ctags'
+alias ctags='/opt/homebrew/bin/ctags'
+#
+#gcc
+alias gcc='gcc-11'
+alias g++='g++-11'
 #
 #X86 Homebrew
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
+#
+#clang
+#alias clang='clang-format'
 
 #tmux auto start
 if [ -z "$TMUX" ]; then

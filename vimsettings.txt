@@ -77,6 +77,7 @@ call vundle#begin()
         let g:ycm_complete_in_comments = 1 "在註釋輸入中也能補全
         let g:ycm_complete_in_strings = 1 "在字串輸入中也能補全
         let g:ycm_collect_identifiers_from_comments_and_strings = 0 "註釋和字串中的文字也會被收入補全
+        "let g:ycm_show_diagnostics_ui = 0  " 關閉檢查
         let g:ycm_echo_current_diagnostic = 1
         let g:ycm_max_num_identifier_candidates = 50
         let g:ycm_auto_trigger = 1
@@ -179,29 +180,10 @@ call vundle#begin()
     Plugin 'tmhedberg/SimpylFold'
         let g:SimpylFold_docstring_preview=1
     
-    "py自動縮排
-    "Plugin 'vim-scripts/indentpython.vim'
-   
-    "語法檢查/高亮
-    "Plugin 'scrooloose/syntastic'
-    set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
-        set statusline+=%*
-        let g:syntastic_always_populate_loc_list = 1
-        let g:syntastic_auto_loc_list = 1
-        let g:syntastic_check_on_open = 1
-        let g:syntastic_check_on_wq = 0
-        "let g:syntastic_python_checkers=['pylint']
-        let g:syntastic_python_checkers=['flake8',"pylint"]
-        "let g:syntastic_python_pylint_post_args =
-                "\ '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
-    "Plugin 'nvie/vim-flake8'
-        let python_highlight_all=1
-    
     "airline
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
-        let g:airline_theme="base16_eighties"
+        "let g:airline_theme="base16_eighties"
         "let g:airline_theme="lucius"
         "let g:airline_theme="dark"
         let g:airline_solarized_bg='dark'
@@ -297,7 +279,7 @@ set smartcase
 set hlsearch
 set incsearch
 set cindent
-set autoindent
+"set autoindent
 set smartindent
 set expandtab
 set tabstop=4
@@ -344,6 +326,11 @@ func SetTitle()
     endif
     
     if &filetype == 'cpp'        
+        call append(line(".")+6, "//#include <bits/stdc++.h>")
+        call append(line(".")+7, "//using namespace std;")        
+        call append(line(".")+8, "")                                                    
+    endif                                
+    if &filetype == 'cc' 
         call append(line(".")+6, "//#include <iostream>")
         call append(line(".")+7, "//#include <cstdlib>")
         call append(line(".")+8, "//using namespace std;")        
